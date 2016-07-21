@@ -17,7 +17,13 @@ public class TimerLabel extends JLabel {
 		setHorizontalAlignment(JLabel.CENTER);
 		setVerticalAlignment(JLabel.CENTER);
 		setFont(getFont().deriveFont(20f));
-
+		
+		timer = new Timer(1000, new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				remainingTime -= 1000;
+				repaint();
+			}
+		});
 	}
 
 	public String formatTime() {
@@ -44,12 +50,6 @@ public class TimerLabel extends JLabel {
 
 	public void startTimer() {
 		remainingTime = 300000; 
-		Timer timer = new Timer(1000, new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				remainingTime -= 1000;
-				repaint();
-			}
-		});
 		timer.start();
 	}
 
