@@ -14,12 +14,21 @@ public class Mainframe extends JFrame{
 		btnsPanel = new ButtonPanel();
 		timerPanel = new TimerPanel();
 		
+		btnsPanel.setBtnListener(new ButtonListener() {
+			public void clickBtn(String btnLabel) {
+				if (btnLabel.equals("Start")){
+					timerPanel.startTimer();
+					System.out.println(btnLabel);
+				}
+			}
+		});
+		
 		setLayout(new BorderLayout());
-		add(timerPanel, BorderLayout.NORTH);
+		add(timerPanel, BorderLayout.CENTER);
 		add(btnsPanel, BorderLayout.SOUTH);
 		
 		pack();
-		setMinimumSize(new Dimension(200, 150));
+		setMinimumSize(new Dimension(200, 100));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		setVisible(true);

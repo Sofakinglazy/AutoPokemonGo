@@ -1,17 +1,29 @@
 package gui;
 
+import java.awt.Dimension;
+
 import javax.swing.*;
-import model.TimeCounter;
+import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 
 public class TimerPanel extends JPanel{
 	
-	private JLabel timerLabel;
-	private TimeCounter timer;
-	private int min;
-	private int sec;
+	private TimerLabel timerLabel;
 	
 	public TimerPanel(){
-		timerLabel = new JLabel("05 : 00");
-		timer = new TimeCounter(min, sec);
+		timerLabel = new TimerLabel();
+		
+		Border raisedEtched = BorderFactory.createBevelBorder(EtchedBorder.RAISED);
+		Border loweredEtched = BorderFactory.createBevelBorder(EtchedBorder.LOWERED);
+		Border inside = BorderFactory.createCompoundBorder(raisedEtched, loweredEtched);
+		Border outside = BorderFactory.createEmptyBorder(5, 10, 5, 10);
+		setBorder(BorderFactory.createCompoundBorder(outside, inside));
+		
+		setPreferredSize(new Dimension(200, 50));
+		add(timerLabel);
+	}
+
+	public void startTimer() {
+		timerLabel.startTimer();
 	}
 }
