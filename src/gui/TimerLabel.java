@@ -11,7 +11,7 @@ import model.CursorPoints;
 
 public class TimerLabel extends JLabel {
 
-	public static long CONSTANT_TIME = 6 * 60 * 1000; // 5 mins 
+	public static long CONSTANT_TIME = 1 * 60 * 1000; // 5 mins 
 	
 	private long remainingTime;
 	private String smins = "";

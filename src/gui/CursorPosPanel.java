@@ -1,7 +1,6 @@
 package gui;
 
-import java.awt.GridLayout;
-
+import java.awt.*;
 import javax.swing.*;
 
 import model.Point;
@@ -17,6 +16,7 @@ public class CursorPosPanel extends JPanel {
 	private int count;
 
 	public CursorPosPanel() {
+		super();
 		setLayout(new GridLayout(3, 2));
 
 		pointsLabel = new JLabel[LABEL_TITLE.length];
@@ -46,5 +46,6 @@ public class CursorPosPanel extends JPanel {
 		pointsLabel[count].setText(s);
 		repaint();
 	}
+	
 
 }

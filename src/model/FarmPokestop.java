@@ -49,13 +49,18 @@ public class FarmPokestop implements Runnable {
 			robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			// wait until the pokestop shows up
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(5000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			// swipe the pokestop
 			robot.mouseMove(swipePoints[0].x, swipePoints[0].y);
 			robot.mousePress(InputEvent.BUTTON1_MASK);
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
 			robot.mouseMove(swipePoints[1].x, swipePoints[1].y);
 			robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			// wait to get the items

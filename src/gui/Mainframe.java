@@ -12,6 +12,7 @@ public class Mainframe extends JFrame{
 	private TimerPanel timerPanel;
 	private CursorListener cursorListener;
 	private CursorPosPanel cursorPosPanel;
+	private ScreenCapturePanel screenShot;
 	
 	public Mainframe(){
 		super("Pokemon Go Bot");
@@ -20,6 +21,7 @@ public class Mainframe extends JFrame{
 		timerPanel = new TimerPanel();
 		cursorListener = new CursorListener();
 		cursorPosPanel = new CursorPosPanel();
+		screenShot = new ScreenCapturePanel();
 		
 		btnsPanel.setBtnListener(new ButtonListener() {
 			public void clickBtn(String btnLabel) {
@@ -28,7 +30,9 @@ public class Mainframe extends JFrame{
 					timerPanel.setCursorPos(cursorListener.getCursorPoints());
 				}
 				if (btnLabel.equals("Record")){
-					cursorPosPanel.addMouseListener(cursorListener);
+					screenShot.addMouseListener(cursorListener);
+					screenShot.updateBackground();
+					screenShot.repaint();
 					System.out.println("Recording");
 				}
 			}
@@ -41,10 +45,11 @@ public class Mainframe extends JFrame{
 		});
 		
 		
-		setLayout(new BorderLayout());
-		add(timerPanel, BorderLayout.NORTH);
-		add(btnsPanel, BorderLayout.SOUTH);
-		add(cursorPosPanel, BorderLayout.CENTER);
+		setLayout(new GridLayout(4, 1));
+		add(timerPanel);
+		add(btnsPanel);
+		add(cursorPosPanel);
+		add(screenShot);
 		
 		pack();
 		setMinimumSize(new Dimension(300, 100));
