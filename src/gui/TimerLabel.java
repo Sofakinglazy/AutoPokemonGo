@@ -1,12 +1,17 @@
 package gui;
 
+import java.awt.AWTException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import model.FarmPokestop;
+
 public class TimerLabel extends JLabel {
 
+	public static long CONSTANT_TIME = 5 * 60 * 1000 / 60; // 5 mins 
+	
 	private long remainingTime;
 	private String smins = "";
 	private String ssecs = "";
@@ -20,10 +25,23 @@ public class TimerLabel extends JLabel {
 		
 		timer = new Timer(1000, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				remainingTime -= 1000;
 				repaint();
+				remainingTime -= 1000;
+				if (remainingTime == 0){
+					// reset timer and execute farming pokestops
+					resetTimer();
+					try {
+						new Thread(new FarmPokestop()).start();
+					} catch (AWTException e1) {
+						e1.printStackTrace();
+					}
+				}
 			}
 		});
+	}
+	
+	private void resetTimer() {
+		remainingTime = CONSTANT_TIME; 
 	}
 
 	public String formatTime() {
@@ -49,7 +67,7 @@ public class TimerLabel extends JLabel {
 	}
 
 	public void startTimer() {
-		remainingTime = 300000; 
+		resetTimer();
 		timer.start();
 	}
 

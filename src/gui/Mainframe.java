@@ -3,22 +3,29 @@ package gui;
 import java.awt.*;
 import javax.swing.*;
 
+import model.RecordCursor;
+
 public class Mainframe extends JFrame{
 		
 	private ButtonPanel btnsPanel;
 	private TimerPanel timerPanel;
+	private CursorListener cursorListener;
 	
 	public Mainframe(){
 		super("Auto Pokemon Go");
 		
 		btnsPanel = new ButtonPanel();
 		timerPanel = new TimerPanel();
+		cursorListener = new CursorListener();
 		
 		btnsPanel.setBtnListener(new ButtonListener() {
 			public void clickBtn(String btnLabel) {
 				if (btnLabel.equals("Start")){
 					timerPanel.startTimer();
-					System.out.println(btnLabel);
+				}
+				if (btnLabel.equals("Record")){
+					timerPanel.addMouseListener(cursorListener);
+					System.out.println("here");
 				}
 			}
 		});
