@@ -11,13 +11,13 @@ import model.CursorPoints;
 
 public class TimerLabel extends JLabel {
 
-	public static long CONSTANT_TIME = 20 * 60 * 1000 / 60; // 5 mins 
+	public static long CONSTANT_TIME = 6 * 60 * 1000; // 5 mins 
 	
 	private long remainingTime;
 	private String smins = "";
 	private String ssecs = "";
 	private Timer timer;
-	private CursorPoints recordCursor;
+	private CursorPoints cursorPos;
 
 	public TimerLabel() {
 
@@ -33,7 +33,7 @@ public class TimerLabel extends JLabel {
 					// reset timer and execute farming pokestops
 					resetTimer();
 					try {
-						new Thread(new FarmPokestop(recordCursor)).start();
+						new Thread(new FarmPokestop(cursorPos)).start();
 					} catch (AWTException e1) {
 						e1.printStackTrace();
 					}
@@ -74,7 +74,7 @@ public class TimerLabel extends JLabel {
 	}
 
 	public void setCursorPos(CursorPoints cursorPos) {
-		this.recordCursor = cursorPos;
+		this.cursorPos = cursorPos;
 	}
 
 }

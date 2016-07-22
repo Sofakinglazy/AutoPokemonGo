@@ -3,20 +3,23 @@ package gui;
 import java.awt.*;
 import javax.swing.*;
 
-import model.CursorPoints;
+import model.Point;
+
 
 public class Mainframe extends JFrame{
 		
 	private ButtonPanel btnsPanel;
 	private TimerPanel timerPanel;
 	private CursorListener cursorListener;
+	private CursorPosPanel cursorPosPanel;
 	
 	public Mainframe(){
-		super("Auto Pokemon Go");
+		super("Pokemon Go Bot");
 		
 		btnsPanel = new ButtonPanel();
 		timerPanel = new TimerPanel();
 		cursorListener = new CursorListener();
+		cursorPosPanel = new CursorPosPanel();
 		
 		btnsPanel.setBtnListener(new ButtonListener() {
 			public void clickBtn(String btnLabel) {
@@ -25,18 +28,26 @@ public class Mainframe extends JFrame{
 					timerPanel.setCursorPos(cursorListener.getCursorPoints());
 				}
 				if (btnLabel.equals("Record")){
-					timerPanel.addMouseListener(cursorListener);
-					System.out.println("here");
+					cursorPosPanel.addMouseListener(cursorListener);
+					System.out.println("Recording");
 				}
 			}
 		});
 		
+		cursorListener.setCursorPosListener(new CursorPosListener() {
+			public void pointEmitted(Point point) {
+				cursorPosPanel.displayPoint(point);
+			}
+		});
+		
+		
 		setLayout(new BorderLayout());
-		add(timerPanel, BorderLayout.CENTER);
+		add(timerPanel, BorderLayout.NORTH);
 		add(btnsPanel, BorderLayout.SOUTH);
+		add(cursorPosPanel, BorderLayout.CENTER);
 		
 		pack();
-		setMinimumSize(new Dimension(200, 100));
+		setMinimumSize(new Dimension(300, 100));
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		
 		setVisible(true);
