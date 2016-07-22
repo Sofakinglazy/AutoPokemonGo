@@ -7,11 +7,11 @@ import java.awt.event.InputEvent;
 public class FarmPokestop implements Runnable {
 
 	private Robot robot;
-	private RecordCursor points;
+	private RecordCursor cursorPos;
 	
-	public FarmPokestop() throws AWTException {
+	public FarmPokestop(RecordCursor cursorPos) throws AWTException {
 		robot = new Robot();
-		points = new RecordCursor();
+		this.cursorPos = cursorPos;
 		
 		robot.mouseMove(400, 500);
 		robot.mousePress(InputEvent.BUTTON1_MASK);
@@ -22,6 +22,14 @@ public class FarmPokestop implements Runnable {
 	@Override
 	public void run() {
 		System.out.println("Farming Pokestops.");
+		
+		if (cursorPos == null) return;
+		
+		for (int i = 0; i < cursorPos.points.length; i++){
+			if (cursorPos.points[i] != null){
+				System.out.println(cursorPos.points[i]);
+			}
+		}
 		
 	}
 

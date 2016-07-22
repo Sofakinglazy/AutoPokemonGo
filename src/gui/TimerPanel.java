@@ -6,6 +6,8 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 
+import model.RecordCursor;
+
 public class TimerPanel extends JPanel{
 	
 	private TimerLabel timerLabel;
@@ -25,5 +27,9 @@ public class TimerPanel extends JPanel{
 
 	public void startTimer() {
 		timerLabel.startTimer();
+	}
+
+	public void setCursorPos(RecordCursor cursorPos) {
+		timerLabel.setCursorPos(cursorPos);
 	}
 }

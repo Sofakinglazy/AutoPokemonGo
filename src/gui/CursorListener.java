@@ -40,5 +40,9 @@ public class CursorListener implements MouseListener{
 	@Override
 	public void mouseExited(MouseEvent e) {
 	}
+	
+	public RecordCursor getCursorPos(){
+		return recordCursor;
+	}
 
 }

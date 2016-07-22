@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 
 import model.FarmPokestop;
+import model.RecordCursor;
 
 public class TimerLabel extends JLabel {
 
@@ -16,6 +17,7 @@ public class TimerLabel extends JLabel {
 	private String smins = "";
 	private String ssecs = "";
 	private Timer timer;
+	private RecordCursor recordCursor;
 
 	public TimerLabel() {
 
@@ -31,7 +33,7 @@ public class TimerLabel extends JLabel {
 					// reset timer and execute farming pokestops
 					resetTimer();
 					try {
-						new Thread(new FarmPokestop()).start();
+						new Thread(new FarmPokestop(recordCursor)).start();
 					} catch (AWTException e1) {
 						e1.printStackTrace();
 					}
@@ -69,6 +71,10 @@ public class TimerLabel extends JLabel {
 	public void startTimer() {
 		resetTimer();
 		timer.start();
+	}
+
+	public void setCursorPos(RecordCursor cursorPos) {
+		this.recordCursor = cursorPos;
 	}
 
 }
