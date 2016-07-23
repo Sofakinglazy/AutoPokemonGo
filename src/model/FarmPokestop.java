@@ -49,28 +49,36 @@ public class FarmPokestop implements Runnable {
 			robot.mouseRelease(InputEvent.BUTTON1_MASK);
 			// wait until the pokestop shows up
 			try {
-				Thread.sleep(5000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			// swipe the pokestop
-			robot.mouseMove(swipePoints[0].x, swipePoints[0].y);
-			robot.mousePress(InputEvent.BUTTON1_MASK);
-			try {
-				Thread.sleep(500);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			robot.mouseMove(swipePoints[1].x, swipePoints[1].y);
-			robot.mouseRelease(InputEvent.BUTTON1_MASK);
+//			robot.mouseMove(swipePoints[0].x, swipePoints[0].y);
+//			robot.mousePress(InputEvent.BUTTON1_MASK);
+//			int newPosX = swipePoints[0].x;
+//			int newPosY = swipePoints[0].y;
+//			while (swipePoints[1].x > newPosX || swipePoints[1].y > newPosY){
+//				if (swipePoints[1].x > newPosX)
+//					newPosX++;
+//				if (swipePoints[1].y > newPosY)
+//					newPosY++;
+//				robot.mouseMove(newPosX, newPosY);
+//			}
+//			robot.mouseMove(swipePoints[1].x, swipePoints[1].y);
+//			robot.mouseRelease(InputEvent.BUTTON1_MASK);
+			
+			robot.keyPress(KeyEvent.VK_Q);
+			
 			// wait to get the items
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 			// click 'ESC' to exit the pokestop
-			robot.keyPress(KeyEvent.VK_ESCAPE);
+			robot.keyPress(KeyEvent.VK_W);
+			robot.keyRelease(KeyEvent.VK_W);
 			// wait to 'ESC' the pokestop
 			try {
 				Thread.sleep(3000);
